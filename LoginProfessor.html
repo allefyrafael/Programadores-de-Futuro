@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Professor</title>
+    <link rel="stylesheet" href="../style/styleCadastro.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/neuropolitical');
+    </style>
+    <link href="https://fonts.cdnfonts.com/css/neuropolitical" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div><a href="#"><img class="logo" src="assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Início</a></li>
+                <li><a href="#">História</a></li>
+                <li><a href="#">Como funciona?</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#" style="color: var(--ItensMenu);">BANCO DE TALENTOS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <h1 class="form-title">LOGIN <span style="color: var(--ItensMenu);">PROFESSOR</span></h1>
+        <form class="form-cadastro" action="#" method="post">
+            <label for="login">Usuário ou Email:</label>
+            <input type="text" id="login" name="login" placeholder="Digite seu usuário ou email" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+
+            <button type="submit" class="submit-button"><span class="title-button">Entrar</span></button>
+            <p style="text-align: center; color: #555; margin-top: 10px;">
+                <a href="#" style="color: var(--ItensMenu);">Esqueceu a senha?</a>
+            </p>
+        </form>
+    </main>
+</body>
+</html>
