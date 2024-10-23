@@ -205,7 +205,7 @@ a:hover {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background: linear-gradient(135deg, #1c1c3c, #282854);
+    background: linear-gradient(135deg, #1c1c3c, #282854,0.8px);
     opacity: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
