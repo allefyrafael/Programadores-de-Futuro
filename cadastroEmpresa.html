@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Empresas</title>
+  <link rel="stylesheet" href="../style/styleCadastro.css">
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/neuropolitical');
+  </style>
+  <link href="https://fonts.cdnfonts.com/css/neuropolitical" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div><a href="#"><img class="logo" src="assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">O que promove?</a></li>
+        <li><a href="#">História</a></li>
+        <li><a href="#">Como funciona?</a></li>
+        <li><a href="solicitacoes.html">Solicitações</a></li>
+        <li><a href="#">Galeria</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#" style="color: var(--ItensMenu);">BANCO DE TALENTOS</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-container">
+    <h1 class="form-title">CADASTRO DE <span style="color: var(--ItensMenu);">EMPRESAS</span></h1>
+    <form class="form-cadastro" id="form-cadastro" action="/post" method="POST">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Digite o email" required>
+
+      <label for="cnpj">CNPJ:</label>
+      <input type="text" id="cnpj" name="cnpj" placeholder="Digite o CNPJ" required>
+
+      <label for="nomeEmpresa">Nome da Empresa / Razão Social:</label>
+      <input type="text" id="nomeEmpresa" name="nomeEmpresa" placeholder="Digite o nome da empresa" required>
+
+      <label for="nomeCadastrante">Nome do Cadastrante:</label>
+      <input type="text" id="nomeCadastrante" name="nomeCadastrante" placeholder="Digite seu nome" required>
+
+      <label for="cargo">Cargo:</label>
+      <input type="text" id="cargo" name="cargo" placeholder="Digite o cargo" required>
+      
+      <button type="submit" class="submit-button"><span class="title-button">Cadastrar Empresa</span></button>
+    </form>
+  </main>
+</body>
+</html>

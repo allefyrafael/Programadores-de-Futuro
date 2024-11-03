@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualizar Empresas</title>
+  <link rel="stylesheet" href="../style/styleCadastro.css">
+  <link rel="stylesheet" href="../style/solicitacoes.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div><a href="#"><img class="logo" src="assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
+    <nav class="menu">
+      <ul>
+        <li><a href="#">O que promove?</a></li>
+        <li><a href="#">História</a></li>
+        <li><a href="#">Como funciona?</a></li>
+        <li><a href="solicitacoes.html" style="color: var(--ItensMenu);">SOLICITAÇÕES</a></li>
+        <li><a href="#">Galeria</a></li>
+        <li><a href="#">Contato</a></li>
+        <li><a href="#">Banco de Talentos</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Empresas Cadastradas</h1>
+
+  <!-- Filter buttons -->
+  <div class="filter-container">
+    <div>
+      <h3>Filtrar por Status</h3>
+      <button class="filter-button" onclick="filterCompanies(true)">Ativo</button>
+      <button class="filter-button" onclick="filterCompanies(false)">Arquivado</button>
+    </div>
+    <div>
+      <h3>Filtrar por Aprovação</h3>
+      <button class="filter-button" onclick="filterApproval('pendente')">Pendente</button>
+      <button class="filter-button" onclick="filterApproval('aprovado')">Aprovado</button>
+      <button class="filter-button" onclick="filterApproval('reprovado')">Reprovado</button>
+      <button class="filter-button" onclick="fetchCompanies()">Mostrar Todos</button>
+    </div>
+  </div>
+
+  <!-- Table for displaying companies -->
+  <table id="empresa-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>CNPJ</th>
+        <th>Nome Empresa</th>
+        <th>Nome Cadastrante</th>
+        <th>Cargo</th>
+        <th>Status</th>
+        <th>Aprovação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

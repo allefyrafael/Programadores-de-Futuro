@@ -1,0 +1,22 @@
+{
+  "name": "programadores-de-futuro",
+  "version": "1.0.0",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "expresss": "^0.0.0",
+    "mongoose": "^8.7.3",
+    "path": "^0.12.7"
+  },
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
