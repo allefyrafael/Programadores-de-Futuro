@@ -4,7 +4,10 @@ const path = require('path');
 const port = 3019;
 
 const app = express();
-app.use(express.static(__dirname));
+
+// Serve arquivos estáticos a partir do diretório raiz correto
+app.use(express.static(path.join(__dirname, '../')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -33,7 +36,7 @@ const Empresa = mongoose.model('empresa', CadastroEmpresa);
 
 // Rota para servir a página de cadastro
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'cadastroEmpresa.html'));
+  res.sendFile(path.join(__dirname, '../usuarios/empresa/cadastroEmpresa.html'));
 });
 
 // Rota POST para salvar os dados do formulário de cadastro
@@ -53,11 +56,18 @@ app.post('/post', async (req, res) => {
 
     await novaEmpresa.save();
     console.log('Empresa cadastrada:', novaEmpresa);
-    res.redirect('/confirmation.html'); // Redireciona para a página confirmation.html
+
+    // Redireciona para a rota /confirmation
+    res.redirect('/confirmation');
   } catch (error) {
     console.error('Erro ao salvar os dados:', error);
     res.status(500).send('Erro ao salvar os dados.');
   }
+});
+
+// Nova rota para servir a página de confirmação
+app.get('/confirmation', (req, res) => {
+  res.sendFile(path.join(__dirname, '../usuarios/empresa/confirmation.html'));
 });
 
 // Rota para servir a página de visualização das empresas

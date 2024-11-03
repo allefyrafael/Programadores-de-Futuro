@@ -3,8 +3,6 @@ function validarCNPJ(cnpj) {
     cnpj = cnpj.replace(/[^\d]+/g, ''); // Remove tudo que não for dígito
 
     if (cnpj.length !== 14) return false;
-
-    // Elimina CNPJs inválidos conhecidos
     if (/^(\d)\1+$/.test(cnpj)) return false;
 
     let tamanho = cnpj.length - 2;
@@ -12,7 +10,7 @@ function validarCNPJ(cnpj) {
     let digitos = cnpj.substring(tamanho);
     let soma = 0;
     let pos = tamanho - 7;
-    
+
     for (let i = tamanho; i >= 1; i--) {
         soma += numeros.charAt(tamanho - i) * pos--;
         if (pos < 2) pos = 9;
@@ -21,7 +19,7 @@ function validarCNPJ(cnpj) {
     let resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
     if (resultado != digitos.charAt(0)) return false;
 
-    tamanho = tamanho + 1;
+    tamanho += 1;
     numeros = cnpj.substring(0, tamanho);
     soma = 0;
     pos = tamanho - 7;
@@ -32,9 +30,7 @@ function validarCNPJ(cnpj) {
     }
 
     resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
-    if (resultado != digitos.charAt(1)) return false;
-
-    return true;
+    return resultado == digitos.charAt(1);
 }
 
 // Função para validar o formato do e-mail
@@ -43,61 +39,56 @@ function validarEmail(email) {
     return regexEmail.test(email);
 }
 
-// Função para validar o formulário
+// Função para validar se o nome contém apenas letras
+function validarNomeApenasLetras(nome) {
+    const regexNome = /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/; // Aceita letras, incluindo acentos e espaços
+    return regexNome.test(nome);
+}
+
+// Função para validar e enviar o formulário
 function validarFormulario(event) {
-    event.preventDefault(); // Prevenir o envio automático para permitir a validação
+    event.preventDefault(); // Prevenir o envio automático
 
     const email = document.getElementById("email").value;
     const cnpj = document.getElementById("cnpj").value;
-    const nomeEmpresa = document.getElementById("nome-empresa").value;
-    const nomeCadastrante = document.getElementById("nome-cadastrante").value;
+    const nomeEmpresa = document.getElementById("nomeEmpresa").value;
+    const nomeCadastrante = document.getElementById("nomeCadastrante").value;
     const cargo = document.getElementById("cargo").value;
 
     let erros = [];
 
-    // Validação do email
-    if (!validarEmail(email)) {
-        erros.push("E-mail inválido.");
-    }
-
-    // Validação do CNPJ
-    if (!validarCNPJ(cnpj)) {
-        erros.push("CNPJ inválido.");
-    }
-
-    // Validação dos outros campos
-    if (nomeEmpresa.trim() === "") {
-        erros.push("O nome da empresa é obrigatório.");
-    }
-
-    if (nomeCadastrante.trim() === "") {
+    if (!validarEmail(email)) erros.push("E-mail inválido.");
+    if (!validarCNPJ(cnpj)) erros.push("CNPJ inválido.");
+    if (!nomeEmpresa.trim()) erros.push("O nome da empresa é obrigatório.");
+    if (!nomeCadastrante.trim()) {
         erros.push("O nome do cadastrante é obrigatório.");
+    } else if (!validarNomeApenasLetras(nomeCadastrante)) {
+        erros.push("O nome do cadastrante deve conter apenas letras.");
     }
+    if (!cargo.trim()) erros.push("O cargo é obrigatório.");
 
-    if (cargo.trim() === "") {
-        erros.push("O cargo é obrigatório.");
-    }
-
-    // Exibe os erros ou envia o formulário
     if (erros.length > 0) {
         alert("Erros encontrados:\n" + erros.join("\n"));
     } else {
-        // Aqui você pode enviar os dados para o banco de dados
-        enviarParaBancoDeDados({
-            email,
-            cnpj,
-            nomeEmpresa,
-            nomeCadastrante,
-            cargo
-        });
+        enviarParaBancoDeDados({ email, cnpj, nomeEmpresa, nomeCadastrante, cargo });
     }
 }
 
-// Função de exemplo para enviar os dados ao banco de dados
 function enviarParaBancoDeDados(dados) {
-    console.log("Enviando dados para o banco de dados...", dados);
-    // Aqui você pode implementar a lógica para enviar os dados para o banco via AJAX ou outra API.
+    fetch('/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dados)
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/confirmation';
+        } else {
+            alert("Erro ao enviar os dados.");
+        }
+    })
+    .catch(error => console.error("Erro:", error));
 }
 
-// Adiciona um event listener ao formulário para acionar a validação
+// Adiciona o listener para o evento de envio
 document.getElementById("form-cadastro").addEventListener("submit", validarFormulario);
