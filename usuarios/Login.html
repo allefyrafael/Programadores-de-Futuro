@@ -1,43 +1,43 @@
+<!-- login.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Professor</title>
-    <link rel="stylesheet" href="../style/styleCadastro.css">
-    <style>
-        @import url('https://fonts.cdnfonts.com/css/neuropolitical');
-    </style>
-    <link href="https://fonts.cdnfonts.com/css/neuropolitical" rel="stylesheet">
+    <title>Login</title>
 </head>
 <body>
-    <header class="header">
-        <div><a href="#"><img class="logo" src="../assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
-        <nav class="menu">
-            <ul>
-                <li><a href="#">Início</a></li>
-                <li><a href="#">História</a></li>
-                <li><a href="#">Como funciona?</a></li>
-                <li><a href="#">Contato</a></li>
-                <li><a href="#" style="color: var(--ItensMenu);">BANCO DE TALENTOS</a></li>
-            </ul>
-        </nav>
-    </header>
+    <form id="userForm">
+        <input type="text" id="email" placeholder="Email" required />
+        <input type="password" id="senha" placeholder="Senha" required />
+        <button type="submit">Login</button>
+    </form>
 
-    <main class="main-container">
-        <h1 class="form-title">LOGIN <span style="color: var(--ItensMenu);">SISTEMA PGF</span></h1>
-        <form action="/post" class="form-cadastro" id="loginForm">
-            <label for="login">Usuário ou Email:</label>
-            <input type="text" id="login" name="login" placeholder="Digite seu usuário ou email" required>
+    <script>
+        document.getElementById('userForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
 
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" placeholder="Digite sua senha" required>
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha })
+                });
 
-            <button type="submit" class="submit-button"><span class="title-button">Entrar</span></button>
-            <p style="text-align: center; color: #555; margin-top: 10px;">
-                <a href="#" style="color: var(--ItensMenu);">Esqueceu a senha?</a>
-            </p>
-        </form>
-    </main>
+                if (response.ok) {
+                    const result = await response.json();
+                    alert('Login bem-sucedido');
+                    // Redirecionar ou realizar outras ações conforme necessário
+                } else {
+                    alert('Erro no login');
+                }
+            } catch (error) {
+                console.error('Erro ao fazer login:', error);
+                alert('Erro ao fazer login');
+            }
+        });
+    </script>
 </body>
 </html>

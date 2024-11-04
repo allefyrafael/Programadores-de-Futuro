@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Usuários</title>
+    <link rel="stylesheet" href="../../style/styleGerenciador.css">
+</head>
+<body>
+    <h1>Cadastro de Usuários</h1>
+    <div class="container">
+        <div class="form-section">
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" name="senha" required>
+                </div>
+                <div class="form-group">
+                    <label for="perfil">Perfil:</label>
+                    <select id="perfil" name="perfil" required>
+                        <option value="administrador">Administrador</option>
+                        <option value="empresa">Empresa</option>
+                        <option value="professor">Professor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="true">Ativo</option>
+                        <option value="false">Desativado</option>
+                    </select>
+                </div>
+                <button type="submit" class="main-button">Cadastrar Usuário</button>
+            </form>
+        </div>
+
+        <div class="filter-section">
+            <label for="filterStatus">Filtrar Status:</label>
+            <select id="filterStatus">
+                <option value="">Todos</option>
+                <option value="true">Ativo</option>
+                <option value="false">Desativado</option>
+            </select>
+        </div>
+
+        <div id="userList" class="user-list">
+            <div class="section-content user-item">
+                <p><strong>Nome:</strong> Allefy Rafael</p>
+                <p><strong>Email:</strong> allefyrafaelsilva@gmail.com</p>
+                <p><strong>Perfil:</strong> Administrador</p>
+                <p><strong>Status:</strong> Ativo</p>
+                <div class="button-group">
+                    <button class="edit-button">Editar</button>
+                    <button class="delete-button">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../banco/routes/usuario.js"></script>
+</body>
+</html>

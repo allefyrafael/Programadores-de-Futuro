@@ -49,23 +49,23 @@ function validarNomeApenasLetras(nome) {
 function validarFormulario(event) {
     event.preventDefault(); // Prevenir o envio automático
 
-    const email = document.getElementById("email").value;
-    const cnpj = document.getElementById("cnpj").value;
-    const nomeEmpresa = document.getElementById("nomeEmpresa").value;
-    const nomeCadastrante = document.getElementById("nomeCadastrante").value;
-    const cargo = document.getElementById("cargo").value;
+    const email = document.getElementById("email").value.trim();
+    const cnpj = document.getElementById("cnpj").value.trim();
+    const nomeEmpresa = document.getElementById("nomeEmpresa").value.trim();
+    const nomeCadastrante = document.getElementById("nomeCadastrante").value.trim();
+    const cargo = document.getElementById("cargo").value.trim();
 
     let erros = [];
 
     if (!validarEmail(email)) erros.push("E-mail inválido.");
     if (!validarCNPJ(cnpj)) erros.push("CNPJ inválido.");
-    if (!nomeEmpresa.trim()) erros.push("O nome da empresa é obrigatório.");
-    if (!nomeCadastrante.trim()) {
+    if (!nomeEmpresa) erros.push("O nome da empresa é obrigatório.");
+    if (!nomeCadastrante) {
         erros.push("O nome do cadastrante é obrigatório.");
     } else if (!validarNomeApenasLetras(nomeCadastrante)) {
         erros.push("O nome do cadastrante deve conter apenas letras.");
     }
-    if (!cargo.trim()) erros.push("O cargo é obrigatório.");
+    if (!cargo) erros.push("O cargo é obrigatório.");
 
     if (erros.length > 0) {
         alert("Erros encontrados:\n" + erros.join("\n"));
@@ -75,14 +75,14 @@ function validarFormulario(event) {
 }
 
 function enviarParaBancoDeDados(dados) {
-    fetch('/post', {
+    fetch('/empresas', { // Altere para a rota correta do servidor
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(dados)
     })
     .then(response => {
         if (response.ok) {
-            window.location.href = '/confirmation';
+            window.location.href = '/empresas/confirmation'; // Atualize a URL de redirecionamento se necessário
         } else {
             alert("Erro ao enviar os dados.");
         }
