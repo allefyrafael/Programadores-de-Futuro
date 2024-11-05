@@ -1,0 +1,137 @@
+@import url('https://fonts.cdnfonts.com/css/neuropolitical');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/* Variáveis de cores */
+:root {
+    --Branco: white;
+    --Header: rgba(0, 0, 0, 0.912);
+    --ItensMenu: #ff7a00;
+    --Background: #121212;
+    --TextoSecundario: rgba(255, 255, 255, 0.7);
+    --HoverButton: #ff7a00;
+}
+
+/* Estilo global */
+body {
+    background-image: url(../assents/imagens/bg.png);
+    background-size: cover;
+    background-position: center;
+    font-family: 'Neuropolitical', Arial, sans-serif;
+    color: var(--Branco);
+    line-height: 1.6;
+    overflow-x: hidden;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container Principal */
+.main-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(28, 28, 60, 0.9), rgba(40, 40, 84, 0.9));
+    border-radius: 15px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.main-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    justify-content: right;
+    margin-bottom: 15px;
+}
+
+.logoLogin {
+    width: 80px;
+}
+
+/* Título */
+.form-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--Branco);
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 4px #000;
+}
+
+/* Formulário */
+.form-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-cadastro input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--Branco);
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.form-cadastro input:focus {
+    border-color: var(--ItensMenu);
+    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+/* Botão de Envio */
+.submit-button {
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--Branco);
+    background-color: var(--ItensMenu);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #e56b00;
+    transform: scale(1.05);
+}
+
+/* Link Esqueceu Senha */
+.forgot-password {
+    margin-top: 15px;
+    color: var(--TextoSecundario);
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.forgot-password:hover {
+    color: var(--HoverButton);
+    text-decoration: underline;
+}
+
+/* Animação de Hover */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

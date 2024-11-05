@@ -1,9 +1,8 @@
-// Banco/server.js
-
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const bcrypt = require('bcrypt'); // Importa o bcrypt para criptografar senha
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken'); // Importa jwt para autenticação
 const port = 3019;
 
 const app = express();
@@ -12,6 +11,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, '../')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Chave secreta para o JWT
+const JWT_SECRET = 'sua_chave_secreta_aqui'; // Defina uma chave secreta segura
 
 // Conexão com o MongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/SistemaPGF', {
@@ -52,6 +54,69 @@ async function hashPassword(password) {
   return await bcrypt.hash(password, saltRounds);
 }
 
+// Função para verificar a senha
+async function verifyPassword(password, hash) {
+  return await bcrypt.compare(password, hash);
+}
+
+// Rota de login
+app.post('/login', async (req, res) => {
+  const { email, senha } = req.body;
+
+  try {
+    const usuario = await Usuario.findOne({ email });
+    if (!usuario) {
+      return res.status(400).json({ message: 'Usuário não encontrado.' });
+    }
+
+    // Verifica a senha
+    const senhaValida = await verifyPassword(senha, usuario.senha);
+    if (!senhaValida) {
+      return res.status(401).json({ message: 'Senha incorreta.' });
+    }
+
+    // Gera o token JWT
+    const token = jwt.sign({ id: usuario._id, perfil: usuario.perfil }, JWT_SECRET, {
+      expiresIn: '1h',
+    });
+
+    // Retorna o token e o perfil do usuário
+    res.json({ message: 'Login bem-sucedido', token, perfil: usuario.perfil });
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    res.status(500).send('Erro ao fazer login.');
+  }
+});
+
+// Middleware para verificar o token JWT
+function autenticar(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.sendStatus(401);
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403);
+    req.user = user;
+    next();
+  });
+}
+
+// Rota de redirecionamento de dashboard
+app.get('/dashboard', autenticar, (req, res) => {
+  const { perfil } = req.user;
+
+  if (perfil === 'administrador') {
+    res.redirect('/usuarios/administrador/gerenciador.html');
+  } else if (perfil === 'empresa') {
+    res.redirect('/usuarios/empresa/viewEmpresas.html');
+  } else if (perfil === 'professor') {
+    res.redirect('/usuarios/professor/paginaProfessor.html');
+  } else {
+    res.status(403).send('Perfil de usuário não autorizado.');
+  }
+});
+
 // Rota para a página HTML do gerenciador de usuários
 app.get('/usuarios/gerenciador', (req, res) => {
   res.sendFile(path.join(__dirname, '../usuarios/administrador/gerenciador.html'));
@@ -61,14 +126,12 @@ app.get('/usuarios/gerenciador', (req, res) => {
 app.post('/usuarios', async (req, res) => {
   try {
     const { nome, email, senha, perfil, status } = req.body;
-
-    // Criptografa a senha antes de salvar
     const hashedPassword = await hashPassword(senha);
 
     const novoUsuario = new Usuario({
       nome,
       email,
-      senha: hashedPassword, // Armazena a senha criptografada
+      senha: hashedPassword,
       perfil,
       status,
     });
@@ -109,7 +172,6 @@ app.put('/usuarios/:id', async (req, res) => {
     const { nome, email, senha, perfil, status } = req.body;
     const updateData = { nome, email, perfil, status };
 
-    // Se uma nova senha foi enviada, criptografá-la antes de atualizar
     if (senha) {
       updateData.senha = await hashPassword(senha);
     }

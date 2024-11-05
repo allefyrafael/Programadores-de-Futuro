@@ -1,43 +1,44 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../style/styleLogin.css">
+    <link rel="stylesheet" href="../style/styleCadastro.css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/neuropolitical">
 </head>
 <body>
-    <form id="userForm">
-        <input type="text" id="email" placeholder="Email" required />
-        <input type="password" id="senha" placeholder="Senha" required />
-        <button type="submit">Login</button>
-    </form>
 
-    <script>
-        document.getElementById('userForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('senha').value;
+    <header class="header">
+        <div><a href="#"><img class="logo" src="../assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
+        <nav class="menu">
+          <ul>
+            <li><a href="#">O que promove?</a></li>
+            <li><a href="#">História</a></li>
+            <li><a href="#">Como funciona?</a></li>
+            <li><a href="#">Entidade Promotora</a></li>
+            <li><a href="#">Galeria</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Banco de Talentos</a></li>
+            <li><a href="../Login.html">Login</a></li>
+          </ul>
+        </nav>
+      </header>
 
-            try {
-                const response = await fetch('/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, senha })
-                });
+    <div class="main-container">
+        <div class="logo-container">
+            <img src="../assents/imagens/LogoBranca.PNG" alt="Logo" class="logoLogin">
+        </div>
+        <h1 class="form-title">Login</h1>
+        <form id="userForm" class="form-cadastro">
+            <input type="text" id="email" placeholder="Email" required />
+            <input type="password" id="senha" placeholder="Senha" required />
+            <button type="submit" class="submit-button title-button">Entrar</button>
+            <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+        </form>
+    </div>
 
-                if (response.ok) {
-                    const result = await response.json();
-                    alert('Login bem-sucedido');
-                    // Redirecionar ou realizar outras ações conforme necessário
-                } else {
-                    alert('Erro no login');
-                }
-            } catch (error) {
-                console.error('Erro ao fazer login:', error);
-                alert('Erro ao fazer login');
-            }
-        });
-    </script>
+    <script src="../js/login.js"></script>
 </body>
 </html>
