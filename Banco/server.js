@@ -7,6 +7,11 @@ const port = 3019;
 
 const app = express();
 
+const cors = require('cors');
+
+// Configuração do CORS
+app.use(cors());
+
 // Configurações do Express
 app.use(express.static(path.join(__dirname, '../')));
 app.use(express.json());
@@ -272,3 +277,6 @@ app.put('/empresas/:id', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor iniciado na porta ${port}`);
 });
+
+
+

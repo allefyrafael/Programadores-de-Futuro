@@ -1,0 +1,189 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+.logo{
+width: 50px;
+}
+
+:root {
+    --Branco: #FFFFFF;
+    --ItensMenu: #ff7a00;
+    --HoverButton: #e56b00;
+    --Background: #121212;
+    --CardBg: #1e1e2d;
+    --TextoClaro: #FFFFFF;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--Background);
+    color: var(--TextoClaro);
+}
+
+/* Cabeçalho */
+.header {
+    background-color: var(--ItensMenu);
+    color: var(--Branco);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header .menu ul {
+    display: flex;
+    gap: 15px;
+}
+
+.header .menu a {
+    color: var(--Branco);
+    font-weight: bold;
+}
+
+.header .menu a:hover {
+    color: var(--HoverButton);
+}
+
+/* Resumo */
+.summary-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+.card {
+    background-color: var(--CardBg);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* Gráficos */
+.chart-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px auto;
+}
+
+.chart-box {
+    background-color: var(--CardBg);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    text-align: center;
+    width: 300px;
+    max-width: 100%;
+}
+
+canvas {
+    width: 100%;
+    max-height: 300px;
+}
+
+/* Tabelas */
+.table-section {
+    margin: 20px auto;
+    width: 90%;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-section th, .table-section td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #444;
+}
+
+.table-section th {
+    background-color: var(--ItensMenu);
+    color: var(--TextoClaro);
+}
+
+/* Botões */
+.action-button {
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: var(--ItensMenu);
+    color: var(--Branco);
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: var(--HoverButton);
+}
+
+/* Grupos de Gráficos */
+.chart-group {
+    display: flex;
+    gap: 40px; /* Mais espaçamento entre gráficos */
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 30px auto;
+}
+
+.chart-box {
+    background-color: var(--CardBg);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    max-width: 100%;
+}
+
+/* Tabelas */
+.table-section {
+    margin: 20px auto;
+    width: 80%; /* Tabela menor */
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-section th, .table-section td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #444;
+    cursor: pointer; /* Cursor para indicar interatividade */
+}
+
+.table-section tr:hover {
+    background-color: #333; /* Indicação visual ao passar o mouse */
+}
+
+.table-section th {
+    background-color: var(--ItensMenu);
+    color: var(--Branco);
+}

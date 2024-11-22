@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Administrador</title>
+    <link rel="stylesheet" href="../../style/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header class="header">
+        <div class="logo-container">
+            <img src="../../assents/imagens/LogoSite.PNG" alt="Logo" class="logo">
+            <h1>Admin Dashboard</h1>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#overview">Visão Geral</a></li>
+                <li><a href="#empresas">Empresas</a></li>
+                <li><a href="#graficos">Gráficos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção de Resumo -->
+    <section id="overview" class="overview-section">
+        <div class="summary-cards">
+            <div class="card">
+                <h3><i class="fas fa-building"></i> Total de Empresas</h3>
+                <p id="totalEmpresas">Carregando...</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-check-circle"></i> Empresas Aprovadas</h3>
+                <p id="empresasAprovadas">Carregando...</p>
+            </div>
+            <div class="card">
+                <h3><i class="fas fa-user-check"></i> Empresas Ativas</h3>
+                <p id="empresasAtivas">Carregando...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gráficos Detalhados -->
+    <section id="graficos" class="chart-section">
+        <h2>Detalhamento de Empresas</h2>
+        <div class="chart-group">
+            <div class="chart-box">
+                <h3>Status de Ativação</h3>
+                <canvas id="statusEmpresasChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Status de Aprovação</h3>
+                <canvas id="chartStatusAprovacao"></canvas>
+            </div>
+        </div>
+        
+        
+        
+    </section>
+
+   
+
+    <!-- Tabela de Empresas -->
+    <section id="empresas" class="table-section">
+        <h2>Gerenciamento de Empresas</h2>
+        <div class="filter-controls">
+            <input type="text" id="filtroNomeEmpresa" placeholder="Buscar Empresa por Nome">
+            <button class="action-button" onclick="filtrarEmpresas()">Buscar</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Status</th>
+                    <th>Aprovação</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+    <script src="../../js/dashboard.js"></script>
+</body>
+</html>

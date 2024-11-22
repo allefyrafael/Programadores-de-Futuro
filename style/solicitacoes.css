@@ -21,8 +21,7 @@
 
 /* Estilo global */
 body {
-    background-image: url(../assents/imagens/bg.png);
-    font-family: 'Neuropolitical', Arial, sans-serif;
+    background: url(../assents/imagens/bg.png) no-repeat;
     color: var(--Branco);
     line-height: 1.6;
     overflow-x: hidden;
@@ -30,6 +29,7 @@ body {
 
 /* Título da página */
 h1 {
+    font-family: 'Neuropolitical', Arial, sans-serif;
     text-align: center;
     margin: 20px 0;
     font-size: 2.5em;
@@ -68,7 +68,7 @@ table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, rgba(28, 28, 60, 0.9), rgba(40, 40, 84, 0.9));
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
@@ -77,10 +77,11 @@ table {
 th, td {
     padding: 15px;
     text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 144, 24, 0.7);
 }
 
 th {
+    border-top: #ff7a00 1px solid;
     background-color: var(--Header);
     color: var(--Branco);
     font-weight: bold;
@@ -105,18 +106,22 @@ td {
 
 .approve-button {
     background-color: #5cb85c; /* Verde */
+    width: 80px;
 }
 
 .reject-button {
     background-color: #d9534f; /* Vermelho */
+    width: 80px;
 }
 
 .archive-button {
     background-color: #f0ad4e; /* Amarelo */
+    width: 80px;
 }
 
 .activate-button {
     background-color: #0073e6; /* Azul */
+    width: 80px;
 }
 
 .action-button:hover {
