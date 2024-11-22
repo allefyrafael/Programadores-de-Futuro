@@ -11,19 +11,19 @@
 <body>
     <!-- Cabeçalho -->
     <header class="header">
-        <div class="logo-container">
-            <img src="../../assents/imagens/LogoSite.PNG" alt="Logo" class="logo">
-            <h1>Admin Dashboard</h1>
-        </div>
+        <div><a href="#"><img class="logo" src="../../assents/imagens/LogoSite.PNG" alt="Logo"></a></div>
         <nav class="menu">
-            <ul>
-                <li><a href="#overview">Visão Geral</a></li>
-                <li><a href="#empresas">Empresas</a></li>
-                <li><a href="#graficos">Gráficos</a></li>
-            </ul>
+          <ul>
+            <li><a href="#">O que promove?</a></li>
+            <li><a href="#">História</a></li>
+            <li><a href="#">Como funciona?</a></li>
+            <li><a href="solicitacoes.html" style="color: var(--ItensMenu);">SOLICITAÇÕES</a></li>
+            <li><a href="#">Galeria</a></li>
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Banco de Talentos</a></li>
+          </ul>
         </nav>
-    </header>
-
+      </header>
     <!-- Seção de Resumo -->
     <section id="overview" class="overview-section">
         <div class="summary-cards">
@@ -44,7 +44,6 @@
 
     <!-- Gráficos Detalhados -->
     <section id="graficos" class="chart-section">
-        <h2>Detalhamento de Empresas</h2>
         <div class="chart-group">
             <div class="chart-box">
                 <h3>Status de Ativação</h3>
@@ -54,13 +53,28 @@
                 <h3>Status de Aprovação</h3>
                 <canvas id="chartStatusAprovacao"></canvas>
             </div>
+            <section>
+                <!-- Cartões como Botões para Abrir Modais -->
+                <div class="card2">
+                    <button class="modal-button" data-modal="solicitacoesModal">
+                        <h3><i class="fas fa-file-alt"></i> Solicitações</h3>
+                    </button>
+                </div>
+                
+                <div class="card2">
+                    <button class="modal-button" data-modal="usuariosModal">
+                        <h3><i class="fas fa-users"></i> Usuários</h3>
+                    </button>
+                </div>
+                
+                <div class="card2">
+                    <button class="modal-button" data-modal="escolasModal">
+                        <h3><i class="fas fa-school"></i> Escolas</h3>
+                    </button>
+                </div>
+            </section>
         </div>
-        
-        
-        
     </section>
-
-   
 
     <!-- Tabela de Empresas -->
     <section id="empresas" class="table-section">
@@ -72,7 +86,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>Empresa</th>
                     <th>CNPJ</th>
                     <th>Status</th>
                     <th>Aprovação</th>
@@ -82,6 +96,38 @@
         </table>
     </section>
 
+    <!-- Modais -->
+    <!-- Modal Solicitações -->
+    <div id="solicitacoesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Solicitações</h2>
+            <p>Conteúdo das solicitações.</p>
+            <!-- Adicione mais conteúdo conforme necessário -->
+        </div>
+    </div>
+
+    <!-- Modal Usuários -->
+    <div id="usuariosModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Usuários</h2>
+            <p>Conteúdo dos usuários.</p>
+            <!-- Adicione mais conteúdo conforme necessário -->
+        </div>
+    </div>
+
+    <!-- Modal Escolas -->
+    <div id="escolasModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Escolas</h2>
+            <p>Conteúdo das escolas.</p>
+            <!-- Adicione mais conteúdo conforme necessário -->
+        </div>
+    </div>
+
     <script src="../../js/dashboard.js"></script>
+
 </body>
 </html>

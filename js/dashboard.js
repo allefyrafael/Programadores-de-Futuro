@@ -145,3 +145,53 @@ function criarGraficoStatusAprovacao(empresas) {
         }
     });
 }
+
+
+
+// Função para filtrar empresas na tabela
+function filtrarEmpresas() {
+    const filtro = document.getElementById('filtroNomeEmpresa').value.toLowerCase();
+    const tabela = document.querySelector('.table-section table tbody');
+    const linhas = tabela.querySelectorAll('tr');
+
+    // Iterar sobre as linhas para exibir ou ocultar
+    linhas.forEach((linha) => {
+        const nomeEmpresa = linha.querySelector('td:first-child').textContent.toLowerCase();
+
+        if (nomeEmpresa.includes(filtro)) {
+            linha.style.display = ''; // Mostra a linha
+        } else {
+            linha.style.display = 'none'; // Oculta a linha
+        }
+    });
+}
+
+// Fechar modais ao clicar no botão de fechamento
+const modais = document.querySelectorAll('.modal');
+const botoesFechar = document.querySelectorAll('.close-button');
+
+botoesFechar.forEach((botao) => {
+    botao.addEventListener('click', () => {
+        botao.closest('.modal').style.display = 'none';
+    });
+});
+
+// Abrir modal ao clicar nos botões correspondentes
+const botoesModal = document.querySelectorAll('.modal-button');
+
+botoesModal.forEach((botao) => {
+    botao.addEventListener('click', () => {
+        const modalId = botao.getAttribute('data-modal');
+        document.getElementById(modalId).style.display = 'block';
+    });
+});
+
+// Fechar modal ao clicar fora do conteúdo
+window.addEventListener('click', (event) => {
+    modais.forEach((modal) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+

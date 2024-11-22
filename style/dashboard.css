@@ -7,8 +7,34 @@
     text-decoration: none;
 }
 
-.logo{
-width: 50px;
+.logo {
+    width: 60px;
+    margin-left: 40px;
+    transition: transform 0.3s;
+}
+
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.menu {
+    font-size: 16px;
+}
+
+.menu ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.menu ul li {
+    padding: 10px;
+}
+
+.menu ul li a:hover {
+    color: var(--HoverButton);
 }
 
 :root {
@@ -18,43 +44,53 @@ width: 50px;
     --Background: #121212;
     --CardBg: #1e1e2d;
     --TextoClaro: #FFFFFF;
+    --Branco: white;
+    --Header: rgba(0, 0, 0, 0.912);
+    --ItensMenu: #ff7a00;
+    --Background: #121212;
+    --TextoSecundario: rgba(255, 255, 255, 0.7);
+    --HoverButton: #ff7a00;
 }
 
 body {
+    background-image: url(../assents/imagens/bg.png);
+    color: var(--Branco);
     font-family: Arial, sans-serif;
-    background-color: var(--Background);
-    color: var(--TextoClaro);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Links */
+a {
+    color: var(--Branco);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--HoverButton);
+}
+
+.chart-section{
+justify-content: space-between;
+display: flex;
 }
 
 /* Cabeçalho */
 .header {
-    background-color: var(--ItensMenu);
-    color: var(--Branco);
-    padding: 10px;
+    background-color: var(--Header);
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-.header .logo-container {
+.header div {
     display: flex;
     align-items: center;
-    gap: 10px;
 }
 
-.header .menu ul {
-    display: flex;
-    gap: 15px;
-}
 
-.header .menu a {
-    color: var(--Branco);
-    font-weight: bold;
-}
-
-.header .menu a:hover {
-    color: var(--HoverButton);
-}
 
 /* Resumo */
 .summary-cards {
@@ -73,6 +109,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.card2 {
+    margin-top: 20px;
+    background-color: var(--CardBg);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+ }
+
+
+
 .card h3 {
     font-size: 1.2em;
     margin-bottom: 10px;
@@ -83,8 +130,11 @@ body {
     font-weight: bold;
 }
 
+
+
 /* Gráficos */
 .chart-group {
+    align-items: center;
     display: flex;
     gap: 20px;
     justify-content: center;
@@ -97,6 +147,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 15px;
+    margin-right: 40px;
     text-align: center;
     width: 300px;
     max-width: 100%;
@@ -143,23 +194,6 @@ canvas {
 }
 
 /* Grupos de Gráficos */
-.chart-group {
-    display: flex;
-    gap: 40px; /* Mais espaçamento entre gráficos */
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 30px auto;
-}
-
-.chart-box {
-    background-color: var(--CardBg);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    padding: 20px;
-    text-align: center;
-    width: 300px;
-    max-width: 100%;
-}
 
 /* Tabelas */
 .table-section {
@@ -187,3 +221,98 @@ canvas {
     background-color: var(--ItensMenu);
     color: var(--Branco);
 }
+
+/* Estilos para os Modais */
+
+.modal {
+    display: none; /* Oculto por padrão */
+    position: fixed; /* Fixo na tela */
+    z-index: 1000; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    transition: opacity 0.3s ease;
+}
+
+.modal-content {
+    background-color: var(--CardBg);
+    margin: 10% auto; /* 10% do topo e centralizado horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do conteúdo do modal */
+    max-width: 600px; /* Largura máxima */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Ajustes nos Botões dos Modais */
+
+/* Adicionado efeito hover "bloquinho voando" */
+.modal-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-button h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--Branco);
+    transition: color 0.3s;
+}
+
+.modal-button:hover {
+    transform: translateY(-10px); /* Efeito de movimento */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidade */
+}
+
+.modal-button:hover h3 {
+    color: var(--HoverButton); /* Alteração de cor no hover */
+}
+
+/* Adicionando animação para suavizar a entrada */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
